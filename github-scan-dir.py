@@ -1,6 +1,6 @@
-#!/bin/python3
-# /github-scan-dir.py extybr playlist_check
-# !! API rate limit
+#!/usr/bin/python3
+# ./github-scan-dir.py extybr github_scan_dir
+# API rate limit !!
 
 import sys
 import requests
@@ -46,3 +46,4 @@ def scan(items: list) -> None:
 
 
 scan(request(dst))
+
