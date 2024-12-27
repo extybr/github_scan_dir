@@ -1,6 +1,11 @@
 #!/bin/bash
 # $> ./github-scan-dir.sh extybr github_scan_dir
 
+if [ "$#" -ne 2 ]
+	then echo -e "\e[37mExpected 2 parameters, but passed $#\e[0m"
+	exit 1
+fi
+
 user="$1"
 repo="$2"
 
@@ -17,7 +22,9 @@ echo "${response}"
 }
 
 output=$(request "${user}" "${repo}")
-echo "${output}" | grep -oP "href=\"\/${user}\/${repo}\/(blob|tree)[^\"]+\"" | \
-sed 's/href="/File: https:\/\/raw.githubusercontent.com/g ; s/blob\///g ; s/.$//g ; s/%20/ /g ; s/.*tree\/main\//\Folder: /' | \
-sort | uniq
+dir=$(echo "${output}" | grep -oP "href=\"\/${user}\/${repo}\/(blob|tree)[^\"]+\"" | \
+sed 's/href="/\\e[37mFile:\\e[0m https:\/\/raw.githubusercontent.com/g ; s/blob\///g ; s/.$//g ; s/%20/ /g ; s/.*tree\/main\//\\e[33mFolder:\\e[0m /' | \
+sort | uniq)
+
+echo -e "User: \e[37m${user}\e[0m  Repository: \e[37m${repo}\e[0m\n${dir}"
 

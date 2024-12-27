@@ -18,7 +18,7 @@ if len(sys.argv) == 3:
     repo = sys.argv[2]
     dst = f"https://api.github.com/repos/{user}/{repo}/contents"
 else:
-    print(f"{white}Ожидалось 2 параметра\nПример: \n{yellow}"
+    print(f"{white}Expected 2 parameters\nExample: \n{yellow}"
           f"./github-scan-dir.py extybr playlist_check{normal}")
     exit(0)
 
