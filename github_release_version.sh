@@ -5,8 +5,8 @@
 #######################################################
 
 if [ "$#" -ne 2 ]
-	then echo -e "\e[37mExpected 2 parameters, but passed $#\e[0m"
-	exit 1
+  then echo -e "\e[37mExpected 2 parameters, but passed $#\e[0m"
+  exit 1
 fi
 
 user="$1"
